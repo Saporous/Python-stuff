@@ -1,5 +1,7 @@
 import os
 # https://docs.python.org/3/library/os.path.html
+import datetime
+# https://docs.python.org/3.5/library/datetime.html
 
 cwd = os.getcwd()
 print('cwd:',cwd)
@@ -15,8 +17,13 @@ print('.\\test exists?:',os.path.exists(os.path.join(cwd, 'test')))
 print('.\\test\\lala exists?:',os.path.exists(os.path.join(cwd, 'test','lala')))
 print('.\\test\\foo exists?:',os.path.exists(os.path.join(cwd, 'test','foo')))
 
-file = open(os.path.join(cwd,'test','bar.txt'),'a')
-file.write('Hello World!\n')
+file = open(os.path.join(cwd,'test','bar.txt'),'w')
+file.write(str(datetime.datetime.now()))
+file.close()
+
+file = open(os.path.join(cwd,'test','bar.txt'))
+contents = file.read()
+print('bar.txt contained:', contents)
 file.close()
 
 os.remove(os.path.join(cwd,'test','bar.txt'))
